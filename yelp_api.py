@@ -17,7 +17,7 @@ class YelpDataRetriever:
         total_results = 0
         businesses = []
 
-        while total_results < 100:
+        while total_results <= 20:
             params = {"location": "OH", "limit": limit, "offset": offset}
             try:
                 response = rq.get(self.api_url, headers=self.headers, params=params)

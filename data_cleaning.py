@@ -35,7 +35,18 @@ class YelpDataProcessor:
         self.df_flat = self.df_flat.drop(columns=['price'])
         self.df_flat['address2'] = self.df_flat['address2'].fillna('Not specified')
         self.df_flat['address3'] = self.df_flat['address3'].fillna('Not specified')
-        self.df_flat = self.df_flat.drop(columns=['categories', 'categories_list', 'is_closed'])
+        self.df_flat = self.df_flat.drop(columns='is_closed')
+        cat_str_arr = []
+        tran_str_arr = []
+        for row in self.df_flat.itertuples(index=False):
+            categories_list = [category['title'] for category in row.categories] if row.categories else []
+            categories_str = ', '.join(categories_list)
+            transactions_str = ', '.join(row.transactions) if row.transactions else ''
+            cat_str_arr.append(categories_str)
+            tran_str_arr.append(transactions_str)
+        self.df_flat['categories_str'] = cat_str_arr
+        self.df_flat['transactions_str'] = tran_str_arr
+        self.df_flat.drop(columns=['categories', 'transactions', 'categories_list'], inplace=True)
     def get_processed_data(self):
         if self.df_flat is None:
             raise ValueError("No processed data available. Please call process_data() first.")
