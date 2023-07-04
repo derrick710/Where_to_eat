@@ -1,0 +1,22 @@
+Restaurant Recommendation System Plan
+Idea: 
+- manage everything via airflow
+- use GPU and hadoop/spark distributed system
+- streaming data pulling 5000 records/day
+- Create a recommendation system using Yelp API
+- Have a simple python website
+- Based on the user location => give out restaurant
+- Based on user input, search by zip code -> nlp -> give out restaurant
+- Client side + host side
+- have api for data retrival
+- store restaurant info in json in mongo
+- store user info in RDMS
+- use machine learning to predict
+- use charts+ graphs via Tableau to show customer tendency 
+- identify top competitors to the business ->nlp+sentimental analysis 
+Pipelines: 
+Yelp API -> json -> Mongo -> retreive -> Python code for cleaning -> Cloud ->ML -> evaluate + retrain -> Web
+Resources: 
+https://medium.com/@HubbaDev/building-a-recommendation-engine-with-aws-data-pipeline-elastic-mapreduce-and-spark-ad886b0a1434
+http://yifanhu.net/PUB/cf.pdf
+
