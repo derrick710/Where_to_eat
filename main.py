@@ -14,5 +14,5 @@ business_df_clean = yelp_processor.get_processed_data()
 
 ### UPLOAD TO MSSQL
 msinsert = DataInsertion()
-#print(business_df_clean.info())
+#print(business_df_clean['name'])
 msinsert.insert_data_to_mssql(business_df_clean)
