@@ -11,7 +11,7 @@ yelp_retriever.retrieve_business()
 yelp_processor = YelpDataProcessor()
 yelp_processor.process_data(yelp_retriever.get_business_json())
 business_df_clean = yelp_processor.get_processed_data()
-
+#print(business_df_clean['transactions_str'])
 ### UPLOAD TO MSSQL
 msinsert = DataInsertion()
 #print(business_df_clean['name'])

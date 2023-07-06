@@ -23,7 +23,8 @@ class DataInsertion:
         for row in self.df.itertuples(index=False):
             #    address2, address3, city, zip_code, country, state, display_address, categories_str, transactions_str, price_point, rating)
             # phone, display_phone, distance, latitude, longitude, address1)
-            cursor.execute("UPDATE business SET name = ?  where id = ?" ,(row.name, row.id))
+            cursor.execute("INSERT INTO business(id, alias, name, url, review_count, phone,distance,latitude,longitude,rating, categories, transactions) values(?,?,?,?,?,?,?,?,?,?,?,?)",
+                           (row.id, row.alias, row.name, row.url, row.review_count, row.phone, row.distance,row.latitude,row.longitude, row.rating, row.categories_str, row.transactions_str))
 
 
             #row.phone, row.display_phone, row.distance, row.latitude,

@@ -49,6 +49,7 @@ class YelpDataProcessor:
         self.df_flat.drop(columns=['categories', 'transactions', 'categories_list'], inplace=True)
 #        self.df_flat['name'] = self.df_flat['name'].str.replace("'", "")
         self.df_flat['name'] = self.df_flat['name'].str.replace(" ", "")
+        self.df_flat = self.df_flat.dropna()
     def get_processed_data(self):
         if self.df_flat is None:
             raise ValueError("No processed data available. Please call process_data() first.")
