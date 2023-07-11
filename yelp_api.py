@@ -2,7 +2,7 @@ import requests as rq
 import pandas as pd
 import pymongo
 from pymongo import MongoClient, InsertOne
-
+from mssql import DataInsertion
 class YelpDataRetriever:
     def __init__(self):
         self.api_url = "https://api.yelp.com/v3/businesses/search"
@@ -12,12 +12,12 @@ class YelpDataRetriever:
         self.business_df = None
 
     def retrieve_business(self):
-        limit = 20
-        offset = 0
-        total_results = 0
+        limit = 5
+        offset = DataInsertion().query('select offset from offset_table')[0][0]
+        total_results = 5
         businesses = []
 
-        while total_results <= 20:
+        while total_results <= 10:
             params = {"location": "OH", "limit": limit, "offset": offset}
             try:
                 response = rq.get(self.api_url, headers=self.headers, params=params)
@@ -26,13 +26,13 @@ class YelpDataRetriever:
                 retrieved_businesses = data['businesses']
                 total_results += len(retrieved_businesses)
                 businesses.extend(retrieved_businesses)
-                offset += limit
+                offset = offset + limit
             except rq.exceptions.RequestException as e:
                 print("Request failed:", e)
-
+        DataInsertion().change_offset(offset)
         self.businesses_json = businesses
         self.business_df = pd.DataFrame(businesses)
-
+        return offset
     def up_to_mongo(self):
         client = pymongo.MongoClient("mongodb://localhost:27017")
         db = client.RestaurantRecommendationSystem
@@ -53,3 +53,6 @@ class YelpDataRetriever:
 
     def get_business_json(self):
         return self.businesses_json
+    
+os =YelpDataRetriever().retrieve_business()
+print(os)
