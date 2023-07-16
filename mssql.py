@@ -73,11 +73,9 @@ class DataInsertion:
         return review
     
 
-    def get_reviews(self):
-        business_id = self.query("SELECT id FROM business")
+    def get_reviews(self, data):
+        business_id = data['id']
         for bid in business_id:
-            t = self.clean_review_id(bid[0])
+            t = self.clean_review_id(bid)
             self.insert_review_to_mssql(t)
 
-ds = DataInsertion()
-ds.get_reviews()
