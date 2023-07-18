@@ -18,9 +18,10 @@ def run_3min_task():
     # UPLOAD TO MSSQL
     DataInsertion().insert_business_to_mssql(business_df_clean)
     DataInsertion().get_reviews(business_df_clean)
-    print('run')
 
-schedule.every().minute.do(run_3min_task)
+run_3min_task()
+"""schedule.every().minute.do(run_3min_task)
 while True:
     schedule.run_pending()
     time.sleep(1)
+"""
