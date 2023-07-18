@@ -38,10 +38,10 @@ class DataInsertion:
         self.establish_connection()
         self.df = data
         query = """
-        INSERT INTO review (id, text, rating, time_created, user_id)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO review (id, text, rating, time_created, user_id, business_id)
+        VALUES (?, ?, ?, ?, ?, ?)
         """
-        params = [(row.id, row.text, row.rating, row.time_created, row.user_id) for row in self.df.itertuples(index=False)]
+        params = [(row.id, row.text, row.rating, row.time_created, row.user_id, row.business_id) for row in self.df.itertuples(index=False)]
         self.cursor.executemany(query, params)
         self.close_connection()
     def insert_business_to_mssql(self,data):
@@ -68,6 +68,7 @@ class DataInsertion:
         response = requests.get(api_get, headers=headers)
         review = pd.json_normalize(response.json()['reviews'])
         review = review.drop(columns=['url','user.profile_url','user.image_url','user.name'])
+        review['business_id'] = id
         review = review.rename(columns={'user.id':'user_id'})
         review = review.dropna()
         return review
@@ -78,4 +79,5 @@ class DataInsertion:
         for bid in business_id:
             t = self.clean_review_id(bid)
             self.insert_review_to_mssql(t)
+
 
