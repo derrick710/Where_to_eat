@@ -54,5 +54,3 @@ class YelpDataRetriever:
     def get_business_json(self):
         return self.businesses_json
     
-os =YelpDataRetriever().retrieve_business()
-print(os)
