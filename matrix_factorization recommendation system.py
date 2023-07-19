@@ -67,6 +67,7 @@ P, Q = matrix_factorization(userid_rating_matrix, P, Q, steps=10)
 #Test the recommendation system
 words = "i want to have dinner with beautiful views"
 test_df = pd.DataFrame([words], columns=['text'])
+print(test_df)
 test_df['text'] = test_df['text'].apply(remove_stopwords_and_punctuation)
 test_vectors = userid_vectorizer.transform(test_df['text'])
 test_v_df = pd.DataFrame(test_vectors.toarray(), index=test_df.index, columns=userid_vectorizer.get_feature_names_out())

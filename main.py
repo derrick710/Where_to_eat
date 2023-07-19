@@ -135,12 +135,13 @@ def recommend():
         # Get input text from user
     input_text = request.form['input_text']
     # Process input text
-    input_text = remove_stopwords_and_punctuation(input_text)
-    input_vector = userid_vectorizer.transform([input_text])
-    input_v_df = pd.DataFrame(input_vector.toarray(), index=[0], columns=userid_vectorizer.get_feature_names_out())
-
+    input_text_df = pd.DataFrame([input_text], columns=['text'])
+    input_text_df['text'] = input_text_df['text'].apply(str)
+    input_text_df['text'] = input_text_df['text'].apply(lambda x: x.lower())
+    input_vector = userid_vectorizer.transform(input_text_df['text'])
+    input_v_df = pd.DataFrame(input_vector.toarray(), index=input_text_df.index, columns=userid_vectorizer.get_feature_names_out())
     # Calculate predicted rating for each restaurant
-    predictItemRating = pd.DataFrame(np.dot(input_v_df, Q.T), index=Q.index, columns=['Rating'])
+    predictItemRating = pd.DataFrame(np.dot(input_v_df.loc[0], Q.T), index=Q.index, columns=['Rating'])
 
     # Get top 5 recommendations
     topRecommendations = pd.DataFrame.sort_values(predictItemRating, ['Rating'], ascending=[0])[:5]
