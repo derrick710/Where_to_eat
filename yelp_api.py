@@ -6,7 +6,7 @@ from mssql import DataInsertion
 class YelpDataRetriever:
     def __init__(self):
         self.api_url = "https://api.yelp.com/v3/businesses/search"
-        self.api_key = "umaP1E2EEpR-tHqS-kOqe5LEztPl3VfMtR97r4HUEYa8M-Wbjpz_qNI_wRnPTeVPOKe987TpJGlZApTHSM-2FgEA6mHqtttOk79zkrOXN-G0jR5POxTEle0nLEXfY3Yx"
+        self.api_key = "eWFcY2ZPmejkMzgpI0-yGVkiGX_Tq0BHCyxH4HH-NJCNsYk1MBRx3x0EfPmMlwbcTDjxG9llau4i-lzcdQCVr9355FOasrodfVJ0fA4Qujd_lIMW0tCTveKHLYW3ZHYx"
         self.headers = {"Authorization": "Bearer {}".format(self.api_key)}
         self.businesses_json = None
         self.business_df = None

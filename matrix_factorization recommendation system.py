@@ -1,6 +1,6 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import WordPunctTokenizer
-#from mssql import DataInsertion
+from mssql import DataInsertion
 import string
 import pandas as pd
 

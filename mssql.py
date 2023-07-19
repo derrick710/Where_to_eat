@@ -63,7 +63,7 @@ class DataInsertion:
 
     def clean_review_id(self, id):
         api_get = f'https://api.yelp.com/v3/businesses/{id}/reviews'
-        api_key = "umaP1E2EEpR-tHqS-kOqe5LEztPl3VfMtR97r4HUEYa8M-Wbjpz_qNI_wRnPTeVPOKe987TpJGlZApTHSM-2FgEA6mHqtttOk79zkrOXN-G0jR5POxTEle0nLEXfY3Yx"
+        api_key = "eWFcY2ZPmejkMzgpI0-yGVkiGX_Tq0BHCyxH4HH-NJCNsYk1MBRx3x0EfPmMlwbcTDjxG9llau4i-lzcdQCVr9355FOasrodfVJ0fA4Qujd_lIMW0tCTveKHLYW3ZHYx"
         headers = {"Authorization": f"Bearer {api_key}"}
         response = requests.get(api_get, headers=headers)
         review = pd.json_normalize(response.json()['reviews'])
