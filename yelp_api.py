@@ -14,6 +14,7 @@ class YelpDataRetriever:
     def retrieve_business(self):
         limit = 5
         offset = DataInsertion().query('select offset from offset_table')[0][0]
+        print(f'offset = {offset}')
         total_results = 5
         businesses = []
 
@@ -32,7 +33,7 @@ class YelpDataRetriever:
         DataInsertion().change_offset(offset)
         self.businesses_json = businesses
         self.business_df = pd.DataFrame(businesses)
-        return offset
+        return businesses
     def up_to_mongo(self):
         client = pymongo.MongoClient("mongodb://localhost:27017")
         db = client.RestaurantRecommendationSystem
