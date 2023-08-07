@@ -1,6 +1,7 @@
 import pandas as pd
 import pypyodbc as odbc
 import requests
+from config import API_KEY
 
 class DataInsertion:
     def __init__(self):
@@ -63,7 +64,7 @@ class DataInsertion:
 
     def clean_review_id(self, id):
         api_get = f'https://api.yelp.com/v3/businesses/{id}/reviews'
-        api_key = "eWFcY2ZPmejkMzgpI0-yGVkiGX_Tq0BHCyxH4HH-NJCNsYk1MBRx3x0EfPmMlwbcTDjxG9llau4i-lzcdQCVr9355FOasrodfVJ0fA4Qujd_lIMW0tCTveKHLYW3ZHYx"
+        api_key = API_KEY
         headers = {"Authorization": f"Bearer {api_key}"}
         response = requests.get(api_get, headers=headers)
         review = pd.json_normalize(response.json()['reviews'])
