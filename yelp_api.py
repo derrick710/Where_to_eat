@@ -3,10 +3,11 @@ import pandas as pd
 import pymongo
 from pymongo import MongoClient, InsertOne
 from mssql import DataInsertion
+from config import API_KEY
 class YelpDataRetriever:
     def __init__(self):
         self.api_url = "https://api.yelp.com/v3/businesses/search"
-        self.api_key = "eWFcY2ZPmejkMzgpI0-yGVkiGX_Tq0BHCyxH4HH-NJCNsYk1MBRx3x0EfPmMlwbcTDjxG9llau4i-lzcdQCVr9355FOasrodfVJ0fA4Qujd_lIMW0tCTveKHLYW3ZHYx"
+        self.api_key = API_KEY
         self.headers = {"Authorization": "Bearer {}".format(self.api_key)}
         self.businesses_json = None
         self.business_df = None

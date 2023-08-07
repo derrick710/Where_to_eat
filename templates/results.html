@@ -2,13 +2,79 @@
 <html>
 <head>
     <title>Restaurant Recommendations</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .rating {
+            font-size: 16px;
+            color: #555;
+            margin-top: 8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Restaurant Recommendations</h1>
-    <ul>
-        {% for restaurant in recommendations %}
-        <li><a href="{{ restaurant.url }}">{{ restaurant.name }}</a> (Rating: {{ restaurant.rating }})</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Your personalized restaurants</h1>
+        <ul>
+            {% for restaurant in recommendations %}
+            <li>
+                <a href="{{ restaurant.url }}">{{ restaurant.name }}</a>
+                <div class="rating">(Rating: {{ restaurant.rating }})</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
