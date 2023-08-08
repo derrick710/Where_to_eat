@@ -92,7 +92,10 @@ def recommend():
         name = restaurant['name'].values[0]
         rating = restaurant['rating'].values[0]
         url = restaurant['url'].values[0]
-        recommendations.append({'name': name, 'rating': rating, 'url': url})
+        phone = restaurant['phone'].values[0]
+        category = restaurant['categories'].values[0]
+        transactions = restaurant['transactions'].values[0]
+        recommendations.append({'name': name, 'rating': rating, 'url': url,'phone':phone, 'category':category, 'transactions': transactions})
 
     # Render results page with recommendations
     return render_template('results.html', recommendations=recommendations)

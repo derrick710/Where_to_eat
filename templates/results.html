@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Restaurant Recommendations</title>
+    <title>🍽️ Restaurant Recommendations 🍔</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #282c36;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,16 +17,18 @@
         
         .container {
             max-width: 800px;
-            background-color: #fff;
+            background-color: #1e222b;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             padding: 30px;
         }
         
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            color: #333;
+            color: #f9fafb;
+            font-size: 32px;
+            letter-spacing: 2px;
         }
         
         ul {
@@ -33,45 +36,93 @@
             padding: 0;
         }
         
-        li {
-            margin-bottom: 20px;
+        .restaurant {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
             padding: 20px;
             border-radius: 12px;
-            background-color: #fff;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #39424f;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
-        li:hover {
+        .restaurant:hover {
             transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
         }
         
-        a {
-            text-decoration: none;
-            color: #007bff;
+        .restaurant img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        
+        .restaurant-info {
+            flex: 1;
+        }
+        
+        .restaurant-name {
+            font-size: 24px;
             font-weight: bold;
-        }
-        
-        a:hover {
-            text-decoration: underline;
+            color: #f9fafb;
+            margin-bottom: 5px;
         }
         
         .rating {
+            font-size: 20px;
+            color: #b5bcc7;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            color: #b5bcc7;
+            font-size: 18px;
+        }
+        
+        .yelp-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .yelp-link:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        
+        .info {
+            color: #b5bcc7;
             font-size: 16px;
-            color: #555;
-            margin-top: 8px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Your personalized restaurants</h1>
+        <h1>🌟 Exquisite Restaurant Recommendations 🍣</h1>
         <ul>
             {% for restaurant in recommendations %}
-            <li>
-                <a href="{{ restaurant.url }}">{{ restaurant.name }}</a>
-                <div class="rating">(Rating: {{ restaurant.rating }})</div>
+            <li class="restaurant">
+        <!--  <img src="{{ restaurant.image_url }}" alt="{{ restaurant.name }}">-->      
+                <div class="restaurant-info">
+                    <div class="restaurant-name">
+                        <a href="{{ restaurant.url }}" class="yelp-link">{{ restaurant.name }}</a>
+                    </div>
+                    <div class="rating">
+                        <span class="icon fas fa-star"></span> Rating: {{ restaurant.rating }}
+                    </div>
+                    <div class="info"><span class="icon fas fa-phone"></span>{{ restaurant.phone }}</div>
+                    <div class="info"><span class="icon fas fa-utensils"></span> Cuisine: {{ restaurant.category }}</div>
+                    <div class="info"><span class="icon fas fa-exchange-alt"></span> Transactions: {{ restaurant.transactions }}</div>
+                    <div>
+                        <span class="icon fas fa-external-link-alt"></span>
+                        <a href="{{ restaurant.url }}" class="yelp-link" target="_blank">Visit Yelp Page</a>
+                    </div>
+                </div>
             </li>
             {% endfor %}
         </ul>
