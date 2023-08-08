@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Restaurant Recommendations</title>
+    <title>🌮 Restaurant Recommendations 🍔</title>
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #222;
+            color: #fff;
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,46 +16,67 @@
         }
         
         .container {
-            max-width: 400px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            max-width: 500px;
+            background-color: #333;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         
         h1 {
-            text-align: center;
             margin-bottom: 20px;
-            color: #333;
+            font-size: 28px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon {
+            font-size: 48px;
+            color: #007bff;
+            margin-right: 10px;
         }
         
         form {
-            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
         }
         
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
-            color: #555;
+            color: #b5bcc7;
+            text-align: left;
         }
         
         input[type="text"] {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Add this line */
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
         }
         
         button {
-            background-color: #007bff;
+            background-color: #f0f;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            padding: 10px 15px;
+            border-radius: 6px;
+            padding: 12px 20px;
             cursor: pointer;
             width: 100%;
+            font-size: 16px;
             transition: background-color 0.2s ease;
         }
         
@@ -64,10 +87,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Restaurant Recommendations</h1>
+        <div class="row">
+            <div class="icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1>Discover Amazing Restaurants 🍣</h1>
+        </div>
         <form action="/recommend" method="post">
-            <label for="input_text">What do you want from a restaurant?</label>
-            <input type="text" id="input_text" name="input_text">
+            <label for="input_text">Tell us your preferences:</label>
+            <input type="text" id="input_text" name="input_text" placeholder="E.g., Italian cuisine, outdoor seating...">
             <button type="submit">Get Recommendations</button>
         </form>
     </div>

@@ -90,12 +90,15 @@ def recommend():
     for i in topRecommendations.index:
         restaurant = business.loc[business['id'] == i]
         name = restaurant['name'].values[0]
+        alias = restaurant['alias'].values[0]
+        alias = alias.replace("-"," ")
+        alias = alias.title()
         rating = restaurant['rating'].values[0]
         url = restaurant['url'].values[0]
         phone = restaurant['phone'].values[0]
         category = restaurant['categories'].values[0]
         transactions = restaurant['transactions'].values[0]
-        recommendations.append({'name': name, 'rating': rating, 'url': url,'phone':phone, 'category':category, 'transactions': transactions})
+        recommendations.append({'name': name,'alias':alias, 'rating': rating, 'url': url,'phone':phone, 'category':category, 'transactions': transactions})
 
     # Render results page with recommendations
     return render_template('results.html', recommendations=recommendations)

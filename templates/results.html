@@ -83,7 +83,7 @@
         }
         
         .yelp-link {
-            color: #007bff;
+            color: #f0f;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -91,7 +91,7 @@
         
         .yelp-link:hover {
             text-decoration: underline;
-            color: #0056b3;
+            color: #f0f;
         }
         
         .info {
@@ -103,14 +103,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>🌟 Exquisite Restaurant Recommendations 🍣</h1>
+        <h1>🌟Exquisite Restaurant Recommendations🍣</h1>
         <ul>
             {% for restaurant in recommendations %}
             <li class="restaurant">
         <!--  <img src="{{ restaurant.image_url }}" alt="{{ restaurant.name }}">-->      
                 <div class="restaurant-info">
                     <div class="restaurant-name">
-                        <a href="{{ restaurant.url }}" class="yelp-link">{{ restaurant.name }}</a>
+                        <a href="{{ restaurant.url }}" class="yelp-link">{{ restaurant.alias }}</a>
                     </div>
                     <div class="rating">
                         <span class="icon fas fa-star"></span> Rating: {{ restaurant.rating }}
