@@ -21,3 +21,6 @@
 🔮 A culinary revolution is simmering, and I invite you to be part of the magic. The aroma of innovation is in the air—prepare to feast your eyes and your palate.
 
 👀 **Look out for it!**
+
+![Index Screenshot](image/index_screenshot.png)
+![Result Screenshot](image/result_screenshot.png)
