@@ -22,5 +22,7 @@
 
 👀 **Look out for it!**
 
+[![Stack Master Demo Video](https://img.youtube.com/vi/efvMDPZ8JA0/0.jpg)](https://youtu.be/efvMDPZ8JA0)
+
 ![Index Screenshot](image/index_screenshot.png)
 ![Result Screenshot](image/result_screenshot.png)
