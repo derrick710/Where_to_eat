@@ -13,13 +13,13 @@ class YelpDataRetriever:
         self.business_df = None
 
     def retrieve_business(self):
-        limit = 5
+        limit = 20
         offset = DataInsertion().query('select offset from offset_table')[0][0]
         print(f'offset = {offset}')
         total_results = 5
         businesses = []
 
-        while total_results <= 10:
+        while total_results <= 20:
             params = {"location": "OH", "limit": limit, "offset": offset}
             try:
                 response = rq.get(self.api_url, headers=self.headers, params=params)

@@ -9,7 +9,7 @@ from mssql import DataInsertion
 # Load data from SQL server
 review = pd.DataFrame(DataInsertion().query('select * from review'))
 business = pd.DataFrame(DataInsertion().query('select * from business'))
-business.columns = ['id', 'alias', 'name', 'url', 'eview_count', 'phone', 'distance', 'latitude', 'longitude', 'rating', 'categories', 'transactions']
+business.columns = ['id', 'alias', 'name', 'url', 'review_count', 'phone', 'distance', 'latitude', 'longitude', 'rating', 'categories', 'transactions']
 review.columns = ['review_id', 'text', 'rating','time_created','user_id', 'business_id']
 business.dropna(inplace=True)
 review.dropna(inplace=True)

@@ -49,10 +49,10 @@ class DataInsertion:
         self.establish_connection()
         self.df = data
         query = """
-        INSERT INTO business (id, alias, name, url, review_count, phone, distance, latitude, longitude, rating, categories, transactions) 
-        VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?,?)
+        INSERT INTO business (id, alias, name, url, image_url, review_count, phone, distance, latitude, longitude, rating, categories, transactions) 
+        VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?,?, ?)
         """
-        params = [(row.id, row.alias, row.name, row.url, row.review_count, row.phone, row.distance, row.latitude,row.longitude, row.rating, row.categories_str, row.transactions_str) for row in self.df.itertuples(index=False)]
+        params = [(row.id, row.alias, row.name, row.url, row.image_url, row.review_count, row.phone, row.distance, row.latitude,row.longitude, row.rating, row.categories_str, row.transactions_str) for row in self.df.itertuples(index=False)]
         self.cursor.executemany(query, params)
      #   self.close_connection()
 

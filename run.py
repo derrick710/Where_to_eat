@@ -11,13 +11,11 @@ app = Flask(__name__)
 
 # Load data from SQL server
 review = pd.DataFrame(DataInsertion().query('select * from review'))
-business = pd.DataFrame(DataInsertion().query('select * from business'))
-business.columns = ['id', 'alias', 'name', 'url', 'eview_count', 'phone', 'distance', 'latitude', 'longitude', 'rating', 'categories', 'transactions']
-review.columns = ['review_id', 'text', 'rating','time_created','user_id', 'business_id']
-business.dropna(inplace=True)
-review.dropna(inplace=True)
-review_user = review[['business_id', 'text', 'rating', 'user_id']]
 
+business = pd.DataFrame(DataInsertion().query('select * from business'))
+business.columns = ['id', 'alias', 'name', 'url', 'review_count', 'phone', 'distance', 'latitude', 'longitude', 'rating', 'categories', 'transactions', 'image_url']
+review.columns = ['review_id', 'text', 'rating','time_created','user_id', 'business_id']
+review_user = review[['business_id', 'text', 'rating', 'user_id']]
 # Define stopwords and punctuation
 stop = set(stopwords.words('english'))
 punctuation = set(string.punctuation)
@@ -73,6 +71,7 @@ def index():
 def recommend():
         # Get input text from user
     input_text = request.form['input_text']
+
     # Process input text
     input_text_df = pd.DataFrame([input_text], columns=['text'])
     input_text_df['text'] = input_text_df['text'].apply(str)
@@ -84,12 +83,16 @@ def recommend():
 
     # Get top 5 recommendations
     topRecommendations = pd.DataFrame.sort_values(predictItemRating, ['Rating'], ascending=[0])[:5]
-
+    #print("-------------------------------------------------------")
+    #print("top recommendations:{}".format(topRecommendations))
+    #print("-------------------------------------------------------")
     # Get name, rating, and URL for each restaurant
     recommendations = []
     for i in topRecommendations.index:
         restaurant = business.loc[business['id'] == i]
         name = restaurant['name'].values[0]
+        image_url = restaurant['image_url'].values[0]
+    #   print(name)
         alias = restaurant['alias'].values[0]
         alias = alias.replace("-"," ")
         alias = alias.title()
@@ -98,8 +101,8 @@ def recommend():
         phone = restaurant['phone'].values[0]
         category = restaurant['categories'].values[0]
         transactions = restaurant['transactions'].values[0]
-        recommendations.append({'name': name,'alias':alias, 'rating': rating, 'url': url,'phone':phone, 'category':category, 'transactions': transactions})
-
+        recommendations.append({'name': name,'alias':alias,'image_url':image_url, 'rating': rating, 'url': url,'phone':phone, 'category':category, 'transactions': transactions})
+    print(recommendations)
     # Render results page with recommendations
     return render_template('results.html', recommendations=recommendations)
 if __name__ == '__main__':
