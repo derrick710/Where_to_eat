@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #282c36;
+            background-color: #1e1e1e;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,17 +17,19 @@
         
         .container {
             max-width: 800px;
-            background-color: #1e222b;
-            border-radius: 12px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            background-color: #2d2d2d;
+            border-radius: 16px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            overflow: hidden; /* Hide overflow for exciting animations */
         }
         
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: #f9fafb;
-            font-size: 32px;
+            font-size: 36px;
+            font-weight: bold;
             letter-spacing: 2px;
         }
         
@@ -39,25 +41,33 @@
         .restaurant {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 12px;
-            background-color: #39424f;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            justify-content: space-between; /* Add more space between image and info */
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 16px;
+            background-color: #343434;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            transform-origin: center; /* Set origin for the hover animation */
+            transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.4, 1), box-shadow 0.2s ease;
         }
         
         .restaurant:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px) scale(1.02); /* Add scaling effect on hover */
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.4);
         }
         
         .restaurant img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin-right: 20px;
+            margin-right: 30px;
             object-fit: cover;
+            animation: pulse 2s infinite alternate; /* Add pulsating animation */
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
         
         .restaurant-info {
@@ -65,25 +75,26 @@
         }
         
         .restaurant-name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #f9fafb;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         
         .rating {
-            font-size: 20px;
-            color: #b5bcc7;
+            font-size: 24px;
+            color: #FFD700; /* Vibrant gold color for rating */
+            margin-bottom: 8px;
         }
         
         .icon {
-            margin-right: 10px;
+            margin-right: 12px;
             color: #b5bcc7;
-            font-size: 18px;
+            font-size: 20px;
         }
         
         .yelp-link {
-            color: #f0f;
+            color: #FF5733; /* Exciting orange color for links */
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -91,19 +102,29 @@
         
         .yelp-link:hover {
             text-decoration: underline;
-            color: #f0f;
+            color: #FFA500; /* Brighter orange on hover */
         }
         
         .info {
             color: #b5bcc7;
-            font-size: 16px;
-            margin-top: 5px;
+            font-size: 18px;
+            margin-top: 8px;
+        }
+        
+        /* Add animation to icons */
+        .icon-animate {
+            animation: spin 2s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌟Exquisite Restaurant Recommendations🍣</h1>
+        <h1>🌟 Exquisite Restaurant Recommendations 🍣</h1>
         <ul>
             {% for restaurant in recommendations %}
             <li class="restaurant">
@@ -113,9 +134,9 @@
                         <a href="{{ restaurant.url }}" class="yelp-link">{{ restaurant.alias }}</a>
                     </div>
                     <div class="rating">
-                        <span class="icon fas fa-star"></span> Rating: {{ restaurant.rating }}
+                        <span class="icon icon-animate fas fa-star"></span> {{ restaurant.rating }}
                     </div>
-                    <div class="info"><span class="icon fas fa-phone"></span>{{ restaurant.phone }}</div>
+                    <div class="info"><span class="icon fas fa-phone"></span> {{ restaurant.phone }}</div>
                     <div class="info"><span class="icon fas fa-utensils"></span> Cuisine: {{ restaurant.category }}</div>
                     <div class="info"><span class="icon fas fa-exchange-alt"></span> Transactions: {{ restaurant.transactions }}</div>
                     <div>
@@ -127,5 +148,7 @@
             {% endfor %}
         </ul>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

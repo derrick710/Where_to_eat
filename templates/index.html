@@ -25,6 +25,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            animation: fadeInUp 1s ease-out; /* Add a fadeInUp animation */
         }
         
         h1 {
@@ -42,11 +43,13 @@
             font-size: 48px;
             color: #007bff;
             margin-right: 10px;
+            animation: bounce 2s infinite; /* Add a bouncing animation to the icon */
         }
         
         form {
             width: 100%;
             max-width: 400px;
+            animation: fadeInUp 1.5s ease-out; /* Add a fadeInUp animation */
         }
         
         label {
@@ -82,6 +85,28 @@
         
         button:hover {
             background-color: #0056b3;
+        }
+        
+        /* Fade-in animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Bounce animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
     </style>
 </head>
